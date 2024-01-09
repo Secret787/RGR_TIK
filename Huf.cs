@@ -43,8 +43,20 @@ namespace RGR_TIK
 
             if (textBox1 != string.Empty)
             {
-                textBox2 = ConvertToHexString(textBox1);
-                MyVector[] byte4 = new MyVector[textBox1.Length * 4];
+                if ((4 - textBox1.Length % 4) != 0)
+                {
+                    int i = 0;
+                    string s = "1";
+                    while (i < (4 - textBox1.Length % 4 - 1))
+                    {
+                        s += "0";
+                        i++;
+                    }
+                    textBox1 += s;
+                }
+
+                textBox2 = textBox1;
+                MyVector[] byte4 = new MyVector[textBox1.Length / 4];
                 dgvprint1(textBox1, byte4);
                 dgvprint2(textBox1, byte4, G, dgv1);
 
@@ -76,19 +88,18 @@ namespace RGR_TIK
         {
          
             int t = 0;
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < s.Length / 4; i++)
             {
-                for (int j = 0; j < 4 * 4; j++)
+                for (int j = 0; j < 4; j++)
                 {
-                    t = (j / 4) + (i * 4);
-                    if (j % 4 == 0)
+                    if (j  == 0)
                     {
-                   
-                        byte4[t] = new MyVector
-                            (Convert.ToInt32(to2(Convert.ToString((long)s[i], 2)).Replace(" ", "").Substring(j + 0, 1)),
-                             Convert.ToInt32(to2(Convert.ToString((long)s[i], 2)).Replace(" ", "").Substring(j + 1, 1)),
-                             Convert.ToInt32(to2(Convert.ToString((long)s[i], 2)).Replace(" ", "").Substring(j + 2, 1)),
-                             Convert.ToInt32(to2(Convert.ToString((long)s[i], 2)).Replace(" ", "").Substring(j + 3, 1)));
+
+                        byte4[i] = new MyVector
+                            (Convert.ToInt32(s.Substring(j + 0 + i * 4, 1)),
+                             Convert.ToInt32(s.Substring(j + 1 + i * 4, 1)),
+                             Convert.ToInt32(s.Substring(j + 2 + i * 4, 1)),
+                             Convert.ToInt32(s.Substring(j + 3 + i * 4, 1)));
                     }
                 }
             }
@@ -98,18 +109,16 @@ namespace RGR_TIK
             Matrix C = new Matrix(byte4) * G;
             dgv2.Rows.Clear();
             int t = 0;
-            for (int i = 0; i < s.Length; i++)
+            for (int i = 0; i < s.Length / 4; i++)
             {
-                for (int j = 0; j < 7 * 4; j++)
+                for (int j = 0; j < 7; j++)
                 {
-                    t = (j / 7) + (i * 4);
+                    t = (j / 7) + (i);
                     if (j % 7 == 0) { dgv2.Rows.Add(); }
                     dgv2.Rows[t].Cells[j % 7].Value = C[t][j % 7];
                 }
-                dgv2.Rows[(i * 4) + 0].Cells[7].Value = Sum(C[(i * 4) + 0]);
-                dgv2.Rows[(i * 4) + 1].Cells[7].Value = Sum(C[(i * 4) + 1]);
-                dgv2.Rows[(i * 4) + 2].Cells[7].Value = Sum(C[(i * 4) + 2]);
-                dgv2.Rows[(i * 4) + 3].Cells[7].Value = Sum(C[(i * 4) + 3]);
+                dgv2.Rows[(i) + 0].Cells[7].Value = Sum(C[(i) + 0]);
+            
             }
         }
 
@@ -117,7 +126,7 @@ namespace RGR_TIK
         {
             Matrix C2 = new Matrix(byte4) * G;
             MyVector[] Res = new MyVector[C2.Size];
-            Matrix byte8 = new Matrix(s.Length * 4);
+            Matrix byte8 = new Matrix(s.Length / 4);
             for (int i = 0; i < C2.Size; i++)
             {
                 byte8[i] = new MyVector(
@@ -139,7 +148,7 @@ namespace RGR_TIK
 
             int t = 0;
 
-            for (int i = 0; i < s.Length * 4; i++)
+            for (int i = 0; i < s.Length / 4; i++)
             {
                 byte8[i] = Transfer(byte8[i]);
 

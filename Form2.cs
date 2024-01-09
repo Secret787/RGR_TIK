@@ -34,7 +34,20 @@ namespace RGR_TIK
             textBox5.Text = "";
             textBox3.Text = h.textBox3;
             textBox4.Text = h.textBox4;
-            textBox5.Text = h.textBox5;
+            textBox5.Text = cut(textBox4.Text);
+        }
+        private string cut(string s)
+        {
+            if (s[s.Length - 1] == '1')
+                s=s.Remove(s.Length - 1);
+            else
+            {
+                while (s[s.Length - 1] != '1')
+                    s = s.Remove(s.Length - 1);
+                s = s.Remove(s.Length - 1);
+
+            }
+            return s;
         }
 
         private void button1_Click(object sender, EventArgs e)
