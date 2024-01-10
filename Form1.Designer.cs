@@ -38,16 +38,18 @@
             Column4 = new DataGridViewTextBoxColumn();
             Column5 = new DataGridViewTextBoxColumn();
             dgv1 = new DataGridView();
-            button12 = new Button();
             textBox2 = new TextBox();
             perevod = new Button();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)Grid).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv1).BeginInit();
             SuspendLayout();
             // 
             // tb
             // 
-            tb.Location = new Point(579, 11);
+            tb.Location = new Point(13, 11);
             tb.Margin = new Padding(2);
             tb.Name = "tb";
             tb.Size = new Size(358, 23);
@@ -55,18 +57,18 @@
             // 
             // Zacod
             // 
-            Zacod.Location = new Point(579, 38);
+            Zacod.Location = new Point(13, 38);
             Zacod.Margin = new Padding(2);
             Zacod.Name = "Zacod";
             Zacod.Size = new Size(358, 25);
             Zacod.TabIndex = 23;
-            Zacod.Text = "Кодирование";
+            Zacod.Text = "Кодирование Шеннон + Хэмминг";
             Zacod.UseVisualStyleBackColor = true;
             Zacod.Click += Zacod_Click2;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(579, 67);
+            textBox1.Location = new Point(11, 82);
             textBox1.Margin = new Padding(2);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(358, 23);
@@ -76,12 +78,12 @@
             // 
             Grid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             Grid.Columns.AddRange(new DataGridViewColumn[] { Column1, Column3, Column2, Column4, Column5 });
-            Grid.Location = new Point(11, 11);
+            Grid.Location = new Point(383, 11);
             Grid.Margin = new Padding(2);
             Grid.Name = "Grid";
             Grid.RowHeadersWidth = 72;
             Grid.RowTemplate.Height = 37;
-            Grid.Size = new Size(553, 210);
+            Grid.Size = new Size(553, 392);
             Grid.TabIndex = 26;
             // 
             // Column1
@@ -122,24 +124,14 @@
             // dgv1
             // 
             dgv1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv1.Location = new Point(11, 226);
+            dgv1.Location = new Point(11, 167);
             dgv1.Name = "dgv1";
-            dgv1.Size = new Size(342, 177);
+            dgv1.Size = new Size(358, 207);
             dgv1.TabIndex = 27;
-            // 
-            // button12
-            // 
-            button12.Location = new Point(579, 95);
-            button12.Name = "button12";
-            button12.Size = new Size(357, 23);
-            button12.TabIndex = 28;
-            button12.Text = "kodirovanie";
-            button12.UseVisualStyleBackColor = true;
-            button12.Click += button12_Click;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(579, 123);
+            textBox2.Location = new Point(11, 124);
             textBox2.Margin = new Padding(2);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(358, 23);
@@ -147,22 +139,51 @@
             // 
             // perevod
             // 
-            perevod.Location = new Point(580, 151);
+            perevod.Location = new Point(10, 380);
             perevod.Name = "perevod";
             perevod.Size = new Size(357, 23);
             perevod.TabIndex = 30;
-            perevod.Text = "perevod";
+            perevod.Text = "Отправка сообщения";
             perevod.UseVisualStyleBackColor = true;
             perevod.Click += perevod_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 65);
+            label1.Name = "label1";
+            label1.Size = new Size(275, 15);
+            label1.TabIndex = 31;
+            label1.Text = "Сообщение, закодированное методом Шеннона";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 107);
+            label2.Name = "label2";
+            label2.Size = new Size(334, 15);
+            label2.TabIndex = 32;
+            label2.Text = "Сообщение, закодированное методом Шеннона, кратное 4";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(13, 149);
+            label3.Name = "label3";
+            label3.Size = new Size(280, 15);
+            label3.TabIndex = 33;
+            label3.Text = "Сообщение, закодированное методом Хэмминга";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(948, 450);
+            ClientSize = new Size(948, 417);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
             Controls.Add(perevod);
             Controls.Add(textBox2);
-            Controls.Add(button12);
             Controls.Add(dgv1);
             Controls.Add(Grid);
             Controls.Add(textBox1);
@@ -188,8 +209,10 @@
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridView dgv1;
-        private Button button12;
         private TextBox textBox2;
         private Button perevod;
+        private Label label1;
+        private Label label2;
+        private Label label3;
     }
 }

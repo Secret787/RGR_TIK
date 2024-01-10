@@ -33,15 +33,11 @@ namespace RGR_TIK
         public void Zacod_Click2(object sender, EventArgs e)
         {
             textBox1.Text = s.Zacod_Click(sender, e, tb.Text, Grid);
-
-        }
-
-        private void button12_Click(object sender, EventArgs e)
-        {
             h.button1_Click(sender, e, dgv1, textBox1.Text);
             textBox2.Text = h.textBox2;
+
         }
-       
+
         private void perevod_Click(object sender, EventArgs e)
         {
             form2.Show();
