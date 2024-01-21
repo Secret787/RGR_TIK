@@ -43,32 +43,32 @@
             // textBox3
             // 
             textBox3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            textBox3.Location = new Point(12, 142);
+            textBox3.Location = new Point(12, 28);
             textBox3.Multiline = true;
             textBox3.Name = "textBox3";
-            textBox3.Size = new Size(450, 202);
+            textBox3.Size = new Size(400, 162);
             textBox3.TabIndex = 10;
             textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(12, 54);
+            textBox4.Location = new Point(418, 56);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(450, 23);
+            textBox4.Size = new Size(338, 23);
             textBox4.TabIndex = 11;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(14, 98);
+            textBox5.Location = new Point(420, 100);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(450, 23);
+            textBox5.Size = new Size(336, 23);
             textBox5.TabIndex = 12;
             // 
             // get2
             // 
-            get2.Location = new Point(12, 10);
+            get2.Location = new Point(418, 12);
             get2.Name = "get2";
-            get2.Size = new Size(450, 23);
+            get2.Size = new Size(338, 23);
             get2.TabIndex = 13;
             get2.Text = "Получить Сообщение";
             get2.UseVisualStyleBackColor = true;
@@ -76,16 +76,16 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(12, 365);
+            textBox1.Location = new Point(418, 144);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(450, 23);
+            textBox1.Size = new Size(338, 23);
             textBox1.TabIndex = 14;
             // 
             // button1
             // 
-            button1.Location = new Point(12, 394);
+            button1.Location = new Point(420, 173);
             button1.Name = "button1";
-            button1.Size = new Size(450, 23);
+            button1.Size = new Size(336, 23);
             button1.TabIndex = 15;
             button1.Text = "Расшифровать";
             button1.UseVisualStyleBackColor = true;
@@ -94,16 +94,16 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 124);
+            label3.Location = new Point(12, 6);
             label3.Name = "label3";
-            label3.Size = new Size(280, 15);
+            label3.Size = new Size(109, 15);
             label3.TabIndex = 34;
-            label3.Text = "Сообщение, закодированное методом Хэмминга";
+            label3.Text = "Проверка ошибок";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(14, 80);
+            label1.Location = new Point(420, 82);
             label1.Name = "label1";
             label1.Size = new Size(275, 15);
             label1.TabIndex = 35;
@@ -112,16 +112,16 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(14, 36);
+            label2.Location = new Point(420, 38);
             label2.Name = "label2";
-            label2.Size = new Size(334, 15);
+            label2.Size = new Size(198, 15);
             label2.TabIndex = 36;
-            label2.Text = "Сообщение, закодированное методом Шеннона, кратное 4";
+            label2.Text = "Исходное полученное сообщение";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(14, 347);
+            label4.Location = new Point(420, 126);
             label4.Name = "label4";
             label4.Size = new Size(173, 15);
             label4.TabIndex = 37;
@@ -131,7 +131,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(476, 429);
+            ClientSize = new Size(764, 202);
             Controls.Add(label4);
             Controls.Add(label2);
             Controls.Add(label1);

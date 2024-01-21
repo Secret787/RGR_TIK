@@ -36,11 +36,54 @@ namespace RGR_TIK
             h.button1_Click(sender, e, dgv1, textBox1.Text);
             textBox2.Text = h.textBox2;
 
+            Hmax.Text = Math.Log2(s.Message.Count).ToString();
+            Hx.Text = HxFunc(s.Message).ToString();
+            Lmid.Text = LmidFunc(s.Message).ToString();
+            pk.Text = (1 - HxFunc(s.Message) / LmidFunc(s.Message)).ToString();
+            R.Text = (LmidFunc(s.Message) - HxFunc(s.Message)).ToString();
+            VecCraft.Text = VecCraftFunc(s.Message).ToString();
+
+            RoundTextBox(Hmax);
+            RoundTextBox(Hx);
+            RoundTextBox(Lmid);
+            RoundTextBox(pk);
+            RoundTextBox(R);
+            RoundTextBox(VecCraft);
         }
 
+        bool perevodNotOpend = true;
         private void perevod_Click(object sender, EventArgs e)
         {
-            form2.Show();
+            if (perevodNotOpend) 
+            { 
+                form2.Show();
+                perevodNotOpend = false;
+            }
+            
+        }
+
+        void RoundTextBox(Label t)
+        {
+            t.Text = (Math.Round(Convert.ToDouble(t.Text), 4)).ToString();
+        }
+
+        double HxFunc(List<Symbol> M)
+        {
+            double res = 0;
+            for (int i = 0; i < M.Count; i++) { res += M[i]._probability * Math.Log2(M[i]._probability); }
+            return res * -1;
+        }
+        double LmidFunc(List<Symbol> M)
+        {
+            double res = 0;
+            for (int i = 0; i < M.Count; i++) { res += M[i]._code.Length * M[i]._probability; }
+            return res;
+        }
+        double VecCraftFunc(List<Symbol> M)
+        {
+            double res = 0;
+            for (int i = 0; i < M.Count; i++) { res += Math.Pow(2, -(M[i]._code.Length)); }
+            return res;
         }
     }
 }

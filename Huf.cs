@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text.RegularExpressions;
+
 using static RGR_TIK.MyVector;
 using static RGR_TIK.Matrix;
 
@@ -25,15 +21,15 @@ namespace RGR_TIK
             Gl = "";
             Hl = "";
 
-            var h1 = new MyVector(1, 1, 0, 1, 1, 0, 0);
-            var h2 = new MyVector(1, 0, 1, 1, 0, 1, 0);
+            var h1 = new MyVector(1, 1, 1, 0, 1, 0, 0);
+            var h2 = new MyVector(1, 1, 0, 1, 0, 1, 0);
             var h3 = new MyVector(0, 1, 1, 1, 0, 0, 1);
             Matrix H = new Matrix(h1, h2, h3);
 
             var g1 = new MyVector(1, 0, 0, 0, 1, 1, 0);
-            var g2 = new MyVector(0, 1, 0, 0, 1, 0, 1);
-            var g3 = new MyVector(0, 0, 1, 0, 0, 1, 1);
-            var g4 = new MyVector(0, 0, 0, 1, 1, 1, 1);
+            var g2 = new MyVector(0, 1, 0, 0, 1, 1, 1);
+            var g3 = new MyVector(0, 0, 1, 0, 1, 0, 1);
+            var g4 = new MyVector(0, 0, 0, 1, 0, 1, 1);
             Matrix G = new Matrix(g1, g2, g3, g4);
 
             Gl += "Матрица G \n";
@@ -186,9 +182,6 @@ namespace RGR_TIK
                 textBox3 += Environment.NewLine;
 
             }
-
-
-
             textBox4 += new Matrix(Res).ToString();
             textBox5 += ConvertToHexStringRev(textBox4);
         }
@@ -209,8 +202,6 @@ namespace RGR_TIK
                     t2 = "";
                 }
             }
-
-
             return result;
         }
 

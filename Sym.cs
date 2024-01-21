@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-namespace RGR_TIK
+﻿namespace RGR_TIK
 {
     public class Sym
     {
@@ -20,21 +13,29 @@ namespace RGR_TIK
                 _probability = probability;
             }
 
-            internal string _name { get; set; }
-            internal double _probability { get; set; }
-            internal string _code { get; set; }
+            public void SetLogValue(int logValue)
+            {
+                _logValue = logValue;
+            }
+
+            public void SetCode(string code)
+            {
+                _code = code;
+            }
+
+            public string _name { get; set; }
+            public double _probability { get; set; }
+            public string _code { get; set; }
+            public int _logValue { get; set; }
         }
 
-        List<Symbol> Message;
+        public List<Symbol> Message;
 
-        String tb = "";
-
-        Dictionary<char, double> letterProbability;
+        public Dictionary<char, double> letterProbability;
 
         public void Fill(object sender, EventArgs e, String tb, DataGridView Grid)
         {
             b = true;
-            //  tb.Text = "фотограф фотала фото";
             string inputText = tb;
 
 
@@ -85,28 +86,85 @@ namespace RGR_TIK
         }
         public void GenerateCode(List<Symbol> M)
         {
-            List<Symbol> Temp = new List<Symbol>();
-            Copy(Temp, M);
-            double m1, m2; ;
-            string k1, k2;
+            //List<Symbol> Temp = new List<Symbol>();
+            //Copy(Temp, M);
+            //double m1, m2; ;
+            //string k1, k2;
+            //Symbol s = new Symbol("", new double());
+
+            //while (Temp.Count > 1)
+            //{
+            //    m1 = min(Temp)._probability;
+            //    k1 = min(Temp)._name;
+            //    Temp.Remove(min(Temp));
+            //    m2 = min(Temp)._probability;
+            //    k2 = min(Temp)._name;
+            //    Add_code(M, k1, "1");
+            //    Add_code(M, k2, "0");
+            //    Temp.Remove(min(Temp));
+            //    Temp.Add(new Symbol(k1 + k2, m1 + m2));
+            //}
+
+            double previousQi = 0;
+            double previousVar = 0;
+
             Symbol s = new Symbol("", new double());
 
-            while (Temp.Count > 1)
+            for (int i = 0; i < M.Count; i++)
             {
-                m1 = min(Temp)._probability;
-                k1 = min(Temp)._name;
-                Temp.Remove(min(Temp));
-                m2 = min(Temp)._probability;
-                k2 = min(Temp)._name;
-                Add_code(M, k1, "1");
-                Add_code(M, k2, "0");
-                Temp.Remove(min(Temp));
-                Temp.Add(new Symbol(k1 + k2, m1 + m2));
+                s = M[i];
+                double probability = M[i]._probability;
+                double qi = previousQi + previousVar;
+                qi = Math.Round(qi, 2);
+                double logValue = -Math.Log(probability, 2);
+                int log = (int)Math.Ceiling(logValue);
+                s._logValue = log;
+                s._code = ConvertTo2(qi.ToString(), Convert.ToInt32(log));
+
+                previousQi = qi;
+                previousVar = probability;
+
+                M[i] = s;
             }
 
-            Reverse(Message);
+            //Reverse(Message);
 
         }
+
+        public string ConvertTo2(string num, int round = 5)
+        {
+            string result = "";
+            string right = "0";
+            string[] temp1 = num.Split(new char[] { ',' });
+
+            if (temp1.Length > 1)
+            {
+                right = temp1[1];
+            }
+
+            if (Int32.TryParse(right, out int INTright))
+            {
+                for (int i = 0; i < round; i++)
+                {
+                    INTright = INTright * 2;
+                    if (INTright.ToString().Length > right.Length)
+                    {
+                        string buf = INTright.ToString();
+                        buf = buf.Remove(0, 1);
+                        INTright = Convert.ToInt32(buf);
+
+                        result += '1';
+                    }
+                    else
+                    {
+                        result += '0';
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public Symbol min(List<Symbol> Temp)
         {
             Symbol s = new Symbol("1", double.MaxValue);
@@ -158,38 +216,25 @@ namespace RGR_TIK
         {
             Symbol s = new Symbol("", new double());
            
-                for (int i = 0; i < M.Count; i++)
-                {
-                    s = M[i];
-                    if (M[i]._name == " ") { s._name = "Пробел"; }
-
-                    if (M.Count == 1)
-                    {
-                        s._code = "1";
-                    }
-                    else
-                    {
-                        char[] arr = s._code.ToCharArray();
-                        Array.Reverse(arr);
-                        s._code = new string(arr);
-                    }
-                    
-                    M[i] = s;
-                }
-            
-        }
-
-        public void res2_Click(object sender, EventArgs e, String tb)
-        {
-            if (tb.Length > 0 && b)
+            for (int i = 0; i < M.Count; i++)
             {
-                
+                s = M[i];
+                if (M[i]._name == " ") { s._name = "Пробел"; }
 
+                if (M.Count == 1)
+                {
+                    s._code = "1";
+                }
+                else
+                {
+                    char[] arr = s._code.ToCharArray();
+                    Array.Reverse(arr);
+                    s._code = new string(arr);
+                }
+                    
+                M[i] = s;
             }
-
         }
-  
-       
 
         public int MaxCodeLen(List<Symbol> Temp)
         {
@@ -254,7 +299,6 @@ namespace RGR_TIK
         {
             
             Fill(sender, e, tb, dgv);
-            res2_Click(sender, e, tb);
             Zac = "";
             string[] str = new string[tb.Length];
             string s1 = tb;
