@@ -62,7 +62,7 @@
             Zacod.Name = "Zacod";
             Zacod.Size = new Size(358, 25);
             Zacod.TabIndex = 23;
-            Zacod.Text = "Кодирование Шеннон + Хэмминг";
+            Zacod.Text = "Кодирование Хаффман + Хэмминг";
             Zacod.UseVisualStyleBackColor = true;
             Zacod.Click += Zacod_Click2;
             // 
@@ -152,18 +152,18 @@
             label1.AutoSize = true;
             label1.Location = new Point(13, 65);
             label1.Name = "label1";
-            label1.Size = new Size(275, 15);
+            label1.Size = new Size(283, 15);
             label1.TabIndex = 31;
-            label1.Text = "Сообщение, закодированное методом Шеннона";
+            label1.Text = "Сообщение, закодированное методом Хаффмана";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(13, 107);
             label2.Name = "label2";
-            label2.Size = new Size(334, 15);
+            label2.Size = new Size(342, 15);
             label2.TabIndex = 32;
-            label2.Text = "Сообщение, закодированное методом Шеннона, кратное 4";
+            label2.Text = "Сообщение, закодированное методом Хаффмана, кратное 4";
             // 
             // label3
             // 

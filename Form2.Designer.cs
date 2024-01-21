@@ -105,18 +105,18 @@
             label1.AutoSize = true;
             label1.Location = new Point(14, 80);
             label1.Name = "label1";
-            label1.Size = new Size(275, 15);
+            label1.Size = new Size(283, 15);
             label1.TabIndex = 35;
-            label1.Text = "Сообщение, закодированное методом Шеннона";
+            label1.Text = "Сообщение, закодированное методом Хаффмана";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Location = new Point(14, 36);
             label2.Name = "label2";
-            label2.Size = new Size(334, 15);
+            label2.Size = new Size(342, 15);
             label2.TabIndex = 36;
-            label2.Text = "Сообщение, закодированное методом Шеннона, кратное 4";
+            label2.Text = "Сообщение, закодированное методом Хаффмана, кратное 4";
             // 
             // label4
             // 
